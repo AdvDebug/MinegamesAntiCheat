@@ -1,6 +1,0 @@
-C:\Users\ezzal\source\repos\MinegamesAntiCheat\MinegamesAntiCheat\bin\Debug\MinegamesAntiCheat.dll
-C:\Users\ezzal\source\repos\MinegamesAntiCheat\MinegamesAntiCheat\bin\Debug\MinegamesAntiCheat.pdb
-C:\Users\ezzal\source\repos\MinegamesAntiCheat\MinegamesAntiCheat\obj\Debug\MinegamesAntiCheat.csproj.CoreCompileInputs.cache
-C:\Users\ezzal\source\repos\MinegamesAntiCheat\MinegamesAntiCheat\obj\Debug\MinegamesAntiCheat.dll
-C:\Users\ezzal\source\repos\MinegamesAntiCheat\MinegamesAntiCheat\obj\Debug\MinegamesAntiCheat.pdb
-C:\Users\ezzal\source\repos\MinegamesAntiCheat\MinegamesAntiCheat\obj\Debug\MinegamesAntiCheat.csproj.AssemblyReference.cache
