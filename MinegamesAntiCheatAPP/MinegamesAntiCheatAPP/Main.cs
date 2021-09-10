@@ -70,34 +70,36 @@ namespace MinegamesAntiCheatAPP
             {
                 MessageBox.Show("Unfixable Error while loading a library, please contact the software developer and try again.", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                 Environment.Exit(0);
-                Task.Delay(1000).Wait();
-            }
-            AntiDebugging.AntiDebuggerAttach();
-            if (AntiDebugging.CloseHandleAntiDebug() || AntiDebugging.RemoteDebuggerCheckAntiDebug())
-            {
-                MessageBox.Show("Yes, there's a debugger.", "Debugger Detected", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("nope, no debugger detected.", "Nope", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-            }
+                AntiDebugging.AntiDebuggerAttach();
+                if (AntiDebugging.CloseHandleAntiDebug() || AntiDebugging.RemoteDebuggerCheckAntiDebug())
+                {
+                    MessageBox.Show("Yes, there's a debugger.", "Debugger Detected", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("nope, no debugger detected.", "Nope", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                }
 
-            if (AntiVirtualization.IsSandboxiePresent() || AntiVirtualization.IsWinePresent() || AntiVirtualization.IsEmulationPresent() || AntiVirtualization.IsVMPresent())
-            {
-                MessageBox.Show("Yes, you are in a virutal environment.", "Virtual Environment Detected", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                if (AntiVirtualization.IsSandboxiePresent() || AntiVirtualization.IsWinePresent() || AntiVirtualization.IsEmulationPresent() || AntiVirtualization.IsVMPresent())
+                {
+                    MessageBox.Show("Yes, you are in a virutal environment.", "Virtual Environment Detected", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Nope, no virtual environment detected.", "Not a Virtual Environment", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                }
+                PreventReplacing(true);
+                Thread DllInjectionPreventionThread = new Thread(new ThreadStart(AntiDllInjectionThread));
+                DllInjectionPreventionThread.Start();
+                if (DllInjectionPreventionThread.ManagedThreadId.ToString() == "3")
+                {
+                    MessageBox.Show("Possible Debugger Detection.", "Debugger", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                }
+                AntiDebugging.HideThreadsFromDebugger();
             }
-            else
-            {
-                MessageBox.Show("Nope, no virtual environment detected.", "Not a Virtual Environment", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-            }
-            PreventReplacing(true);
-            Thread DllInjectionPreventionThread = new Thread(new ThreadStart(AntiDllInjectionThread));
-            DllInjectionPreventionThread.Start();
-            if(DllInjectionPreventionThread.ManagedThreadId.ToString() == "3")
-            {
-                MessageBox.Show("Possible Debugger Detection.", "Debugger", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-            }
-            AntiDebugging.HideThreadsFromDebugger();
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
