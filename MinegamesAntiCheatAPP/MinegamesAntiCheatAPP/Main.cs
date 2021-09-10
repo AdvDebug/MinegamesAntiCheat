@@ -42,34 +42,6 @@ namespace MinegamesAntiCheatAPP
             return false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            PreventReplacing(true);
-            if (AntiDebugging.CloseHandleAntiDebug() || AntiDebugging.RemoteDebuggerCheckAntiDebug())
-            {
-                MessageBox.Show("Yes, there's a debugger.", "Debugger Detected", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("nope, no debugger detected.", "Nope", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-            }
-            PreventReplacing(false);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            PreventReplacing(true);
-            if (AntiVirtualization.IsSandboxiePresent() || AntiVirtualization.IsWinePresent() || AntiVirtualization.IsEmulationPresent() || AntiVirtualization.IsVMPresent())
-            {
-                MessageBox.Show("Yes, you are in a virutal environment.", "Virtual Environment Detected", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Nope, no virtual environment detected.", "Not a Virtual Environment", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-            }
-            PreventReplacing(false);
-        }
-
         private void PreventReplacing(bool IsWillUse)
         {
             FileStream OpenFileToPreventReplacing = new FileStream(Environment.CurrentDirectory + @"\MinegamesAntiCheat.dll", FileMode.Open, FileAccess.Read);
