@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,29 +52,28 @@ namespace MinegamesAntiCheat
 
         public static bool IsVMPresent()
         {
-            using (var searcher = new ManagementObjectSearcher("Select * from Win32_ComputerSystem"))
+            using (ManagementObjectSearcher ObjectSearcher = new ManagementObjectSearcher("Select * from Win32_ComputerSystem"))
             {
-                using (var items = searcher.Get())
+                using (ManagementObjectCollection ObjectItems = ObjectSearcher.Get())
                 {
-                    foreach (var item in items)
+                    foreach (ManagementBaseObject Item in ObjectItems)
                     {
-                        string manufacturer = item["Manufacturer"].ToString().ToLower();
-                        if ((manufacturer == "microsoft corporation" && item["Model"].ToString().ToUpperInvariant().Contains("VIRTUAL"))
-                            || manufacturer.Contains("vmware")
-                            || item["Model"].ToString() == "VirtualBox")
+                        string ManufacturerString = Item["Manufacturer"].ToString().ToLower();
+                        string ModelName = Item["Model"].ToString();
+                        if ((ManufacturerString == "microsoft corporation" && ModelName.ToUpperInvariant().Contains("VIRTUAL") || ManufacturerString.Contains("vmware")))
                         {
                             return true;
                         }
                     }
                 }
             }
-            ServiceController[] services = ServiceController.GetServices();
-            foreach (ServiceController service in services)
+            ServiceController[] GetServicesOnSystem = ServiceController.GetServices();
+            foreach (ServiceController CompareServicesNames in GetServicesOnSystem)
             {
                 string[] Services = { "vmbus", "VMBusHID", "hyperkbd" };
-                foreach (string CheckServices in Services)
+                foreach (string ServicesToCheck in Services)
                 {
-                    if (service.ServiceName.Contains(CheckServices))
+                    if (CompareServicesNames.ServiceName.Contains(ServicesToCheck))
                         return true;
                 }
             }
