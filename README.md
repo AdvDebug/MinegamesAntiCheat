@@ -1,3 +1,5 @@
+# Note
+The Code won't get updated in the github page you will have to decompile it from latest releases.
 # MinegamesAntiCheat
 Advanced Anti-Cheat Library Made in C#
 here's a video about it:
@@ -9,5 +11,3 @@ The Library Can Detect Sandboxes and VM's and emulation, it detects sandboxes li
 # Anti-Cheat
 The Anti-Cheat can prevent cheats like cheat engine Speedhack, Direct3D Hook, preventing Injection (there's normal mode and aggerssive mode, the normal mode are the most stable but less protection and it can stop automated tools and script kiddies but for real protection you have to use aggressive and you have to use it right because it can crash your game or application)
 and you can inject assembly code to function which you want to make it work in a different way, and you can change Memory Page Access, which you can restrict a Memory Page to prevent writing for it which can prevent memory modification hacks, but you have to be very carefull, and soon i will add something to prevent AimBots in games.
-# Note
-The Code won't get updated in the github page you will have to decompile it from latest releases.
