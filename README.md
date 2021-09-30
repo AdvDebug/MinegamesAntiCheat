@@ -1,5 +1,3 @@
-# Note
-The Code won't get updated in the github page you will have to decompile it from latest releases.
 # MinegamesAntiCheat
 Advanced Anti-Cheat Library Made in C#
 here's a video about it:
