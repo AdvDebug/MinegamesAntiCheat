@@ -49,43 +49,5 @@ namespace MinegamesAntiCheat
                 return false;
             }
         }
-
-        public static string GetMessageFromServer(string ServerIPAddress, int Port, ProtocolType Protocol)
-        {
-            IPAddress Server = IPAddress.Parse(ServerIPAddress);
-            EndPoint Endpoint = new IPEndPoint(Server, Port);
-            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, Protocol);
-            try
-            {
-                byte[] Buffer = Encoding.UTF8.GetBytes(string.Empty);
-                socket.ReceiveFrom(Buffer, ref Endpoint);
-                return Encoding.UTF8.GetString(Buffer);
-            }
-            catch
-            {
-                socket.Close();
-                return null;
-            }
-        }
-
-        public static string GetEncryptedMessageFromServer(string ServerIPAddress, int Port, ProtocolType Protocol, string PrivateKey, int RSAKeySize, bool OAEP_Padding)
-        {
-            IPAddress Server = IPAddress.Parse(ServerIPAddress);
-            EndPoint Endpoint = new IPEndPoint(Server, Port);
-            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, Protocol);
-            try
-            {
-                byte[] Buffer = Encoding.UTF8.GetBytes(string.Empty);
-                socket.ReceiveFrom(Buffer, ref Endpoint);
-                RSACryptoServiceProvider RSADecrypt = new RSACryptoServiceProvider(RSAKeySize);
-                RSADecrypt.FromXmlString(PrivateKey);
-                return Encoding.UTF8.GetString(RSADecrypt.Decrypt(Convert.FromBase64String(Encoding.UTF8.GetString(Buffer)), OAEP_Padding));
-            }
-            catch
-            {
-                socket.Close();
-                return null;
-            }
-        }
     }
 }
