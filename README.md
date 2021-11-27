@@ -1,5 +1,5 @@
-# Note
-i'm out of idea's.... if you want a feature or something feel free to open an issue :)
+# NOTE!!!
+This Project are discontinued due to the limits in C#, from hooking, etc...
 # MinegamesAntiCheat
 Advanced Anti-Cheat Library Made in C#
 here's a video about it:
